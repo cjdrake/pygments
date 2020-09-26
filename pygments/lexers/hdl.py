@@ -163,7 +163,7 @@ class SystemVerilogLexer(RegexLexer):
 
     tokens = {
         'root': [
-            (r'^\s*`define', Comment.Preproc, 'macro'),
+            #(r'^\s*`define', Comment.Preproc, 'macro'),
             (r'^(\s*)(package)(\s+)', bygroups(Text, Keyword.Namespace, Text)),
             (r'^(\s*)(import)(\s+)', bygroups(Text, Keyword.Namespace, Text), 'import'),
 
@@ -362,14 +362,14 @@ class SystemVerilogLexer(RegexLexer):
             (r'\\\n', String),  # line continuation
             (r'\\', String),  # stray backslash
         ],
-        'macro': [
-            (r'[^/\n]+', Comment.Preproc),
-            (r'/[*](.|\n)*?[*]/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single, '#pop'),
-            (r'/', Comment.Preproc),
-            (r'(?<=\\)\n', Comment.Preproc),
-            (r'\n', Comment.Preproc, '#pop'),
-        ],
+        #'macro': [
+        #    (r'[^/\n]+', Comment.Preproc),
+        #    (r'/[*](.|\n)*?[*]/', Comment.Multiline),
+        #    (r'//.*?\n', Comment.Single, '#pop'),
+        #    (r'/', Comment.Preproc),
+        #    (r'(?<=\\)\n', Comment.Preproc),
+        #    (r'\n', Comment.Preproc, '#pop'),
+        #],
         'import': [
             (r'[\w:]+\*?', Name.Namespace, '#pop')
         ]
